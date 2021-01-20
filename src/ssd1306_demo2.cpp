@@ -172,10 +172,11 @@ void update_display(void){
 	std::string midi_devices = exec("aconnect -l");
 	//std::cout << midi_devices << "\n";
 	display.clearDisplay();
-
+	bool bWaitMidi = false;
 	if (midi_devices.find("USB Midi") == std::string::npos){
 		//show_text(false, 42, 24, &CONST_NO_MIDI_SAD_[0]);
 		waiting_for_midi();
+		bWaitMidi = true;
 	} else {
 		show_text(false, 76, 24, &CONST_MIDI_TEXT_[0]);
 	}
@@ -190,7 +191,9 @@ void update_display(void){
 	
 	if (midi_devices.find("Connecting") == std::string::npos){
 		aconnected = false;
-		wait_for_connecting();
+		if (!bWaitMidi){
+			wait_for_connecting();
+		}
 	} else {
 		aconnected = true;
 		std::string T2 = "CONNECTED!";		
