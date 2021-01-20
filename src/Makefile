@@ -5,8 +5,7 @@ CCFLAGS=-Ofast
 #CCFLAGS=
 
 # define all programs
-PROGRAMS = ssd1306_demo ssd1306_demo2 test
-#PROGRAMS = ssd1306_demo2
+PROGRAMS = ssd1306_demo2
 SOURCES = ${PROGRAMS:=.cpp}
 
 all: ${PROGRAMS}
@@ -25,6 +24,5 @@ install: all
 	done
 
 .PHONY: install
-
 
 
