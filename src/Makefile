@@ -1,16 +1,15 @@
 prefix := /usr/local
 
 # The recommended compiler flags for the Raspberry Pi
-CCFLAGS=-Ofast 
-#CCFLAGS=
+CCFLAGS=-Ofast
 
 # define all programs
-PROGRAMS = ssd1306_demo2
+PROGRAMS = raspy_host
 SOURCES = ${PROGRAMS:=.cpp}
 
 all: ${PROGRAMS}
 
-${PROGRAMS}: ${SOURCES}
+${PROGRAMS}: ${SOURCES} raspy_host.h
 	g++ ${CCFLAGS} -Wall  -lssd1306 $@.cpp -o $@
 
 clean:

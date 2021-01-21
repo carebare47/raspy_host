@@ -12,4 +12,6 @@ fi
 root_dir=$(git rev-parse --show-toplevel)
 cd "${root_dir}/oled"
 sudo make
+cd ../src
+make
 cd ..
