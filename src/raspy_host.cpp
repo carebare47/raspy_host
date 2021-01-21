@@ -1,5 +1,12 @@
 #include "raspy_host.h"
 
+void init_timers(void){
+	last_time_guitar = std::chrono::high_resolution_clock::now();
+	last_time_connecting = std::chrono::high_resolution_clock::now();
+	last_time_midi = std::chrono::high_resolution_clock::now();
+	connection_time = std::chrono::high_resolution_clock::now();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -17,13 +24,6 @@ int main(int argc, char **argv)
 	}
 	display.close();
 
-}
-
-void init_timers(void){
-	last_time_guitar = std::chrono::high_resolution_clock::now();
-	last_time_connecting = std::chrono::high_resolution_clock::now();
-	last_time_midi = std::chrono::high_resolution_clock::now();
-	connection_time = std::chrono::high_resolution_clock::now();
 }
 
 void update_display(void){
@@ -171,9 +171,6 @@ int get_device_number(std::string search_term){
 void connect(int sender, int reciever){
 	
 	std::string acon = "aconnect ";
-	std::stringstream command_ss;
-	command_ss.clear();
-	command_ss.str("");
 	std::string cmd = std::string("aconnect ") + std::to_string(sender) + std::string(" ") + std::to_string(reciever) + "\n";
 	std::cout << cmd;
 	std::string output = exec(&cmd[0]);
